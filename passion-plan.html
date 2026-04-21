@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passion Plan — The Growth of a Quiet Soul</title>
+  <link rel="stylesheet" href="assets/styles/main.css" />
+</head>
+<body>
+
+<div class="page" id="page-vision">
+
+  <!-- Vision Hero -->
+  <section class="vision-hero container" id="vision-hero">
+    <div class="vision-hero__text">
+      <div class="section-label reveal">
+        <span class="label">Vision &amp; Purpose</span>
+      </div>
+      <h1 class="display-lg reveal reveal--delay-1" style="margin-bottom: 1.5rem;">
+        My Ikigai<br><em>in Clinical Psychology</em>
+      </h1>
+      <p class="prose reveal reveal--delay-2">
+        Where passion meets vocation meets mission meets profession: the intersection that points toward a life of meaning.
+      </p>
+    </div>
+    <div class="vision-hero__image reveal reveal--delay-1" id="vision-hero-image">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Ikigai Grid -->
+  <section class="section container" id="ikigai-section">
+    <div class="section-label reveal">
+      <span class="label">The Four Quadrants</span>
+    </div>
+    <div class="ikigai-grid reveal reveal--delay-1" id="ikigai-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Mission Statement -->
+  <section class="section" id="mission-section">
+    <div class="mission-block reveal">
+      <div class="section-label" style="justify-content: center; margin-bottom: 1.5rem;">
+        <span class="label">Personal Mission Statement</span>
+      </div>
+      <p class="mission-block__quote" id="mission-statement"></p>
+    </div>
+
+    <!-- Grounding still life -->
+    <div class="reveal" style="max-width: 340px; margin: var(--space-lg) auto;" id="grounding-image">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="mission-block reveal" style="margin-top: 0;">
+      <div class="section-label" style="justify-content: center; margin-bottom: 1.5rem;">
+        <span class="label">The Person I Dream of Becoming</span>
+      </div>
+      <p class="mission-block__quote" id="vision-statement"></p>
+    </div>
+  </section>
+
+</div><!-- /page -->
+
+<script type="module">
+  import { content }       from './data/content.js';
+  import { renderNavbar }  from './scripts/components/navbar.js';
+  import { renderFooter }  from './scripts/components/footer.js';
+  import { initReveal }    from './scripts/utils/reveal.js';
+  import { renderImage }   from './scripts/utils/image.js';
+
+  renderNavbar('passion-plan.html');
+
+  // Hero image
+  const heroImgEl = document.getElementById('vision-hero-image');
+  heroImgEl.appendChild(renderImage(content.vision.heroImage));
+
+  // Ikigai grid
+  const grid = document.getElementById('ikigai-grid');
+  content.vision.ikigai.forEach(cell => {
+    const div = document.createElement('div');
+    div.className = 'ikigai-cell';
+    div.innerHTML = `
+      <p class="ikigai-cell__label">${cell.label}</p>
+      <h3 class="ikigai-cell__title">${cell.title}</h3>
+      <p class="ikigai-cell__body">${cell.body}</p>
+    `;
+    grid.appendChild(div);
+  });
+
+  // Mission
+  document.getElementById('mission-statement').textContent = content.vision.missionStatement;
+  document.getElementById('vision-statement').textContent  = content.vision.vision;
+
+  // Grounding image
+  const groundEl = document.getElementById('grounding-image');
+  const groundImg = renderImage(content.vision.groundingImage);
+  groundImg.style.cssText = 'width:100%; aspect-ratio: 4/3; object-fit: cover;';
+  groundEl.appendChild(groundImg);
+
+  renderFooter();
+  initReveal();
+</script>
+
+</body>
+</html>

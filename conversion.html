@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My River Cardoner — The Growth of a Quiet Soul</title>
+  <link rel="stylesheet" href="assets/styles/main.css" />
+</head>
+<body>
+
+<div class="page" id="page-conversion">
+
+  <!-- Hero image -->
+  <div class="conversion-hero" id="conversion-hero">
+    <!-- Rendered by JS -->
+    <p class="conversion-hero__caption">My River Cardoner &nbsp;·&nbsp; Shift from Perfectionism to Gratitude</p>
+  </div>
+
+  <!-- Intro quote -->
+  <div class="conversion-intro reveal">
+    <p class="conversion-intro__quote" id="conversion-intro-quote"></p>
+  </div>
+
+  <!-- Oral video placeholder -->
+  <div class="container--narrow" style="margin-bottom: var(--space-lg);">
+    <div class="reveal" style="margin-bottom: 0.75rem;">
+      <span class="label">Listen to My Story</span>
+    </div>
+    <div class="video-placeholder reveal reveal--delay-1">
+      <div class="video-placeholder__icon">&#9654;</div>
+      <p class="video-placeholder__label">Oral Conversion Video</p>
+    </div>
+  </div>
+
+  <!-- Story sections -->
+  <div id="story-sections">
+    <!-- Rendered by JS -->
+  </div>
+
+  <!-- Prayer -->
+  <div class="prayer-block reveal" id="prayer-block">
+    <!-- Rendered by JS -->
+  </div>
+
+</div><!-- /page -->
+
+<script type="module">
+  import { content }       from './data/content.js';
+  import { renderNavbar }  from './scripts/components/navbar.js';
+  import { renderFooter }  from './scripts/components/footer.js';
+  import { initReveal }    from './scripts/utils/reveal.js';
+  import { renderImage }   from './scripts/utils/image.js';
+
+  renderNavbar('conversion.html');
+
+  // Hero image
+  const heroEl = document.getElementById('conversion-hero');
+  const heroImg = renderImage(content.story.heroImage);
+  heroImg.style.cssText = 'width:100%; height:100%; object-fit:cover; object-position: center 50%;';
+  heroEl.prepend(heroImg);
+
+  // Intro quote
+  document.getElementById('conversion-intro-quote').textContent = content.story.introQuote;
+
+  // Story sections
+  const sectionsEl = document.getElementById('story-sections');
+  content.story.sections.forEach((section, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'conversion-section reveal';
+    wrap.innerHTML = `
+      <div class="section-label" style="margin-bottom: 1.25rem;">
+        <span class="label">${i === 0 ? 'Part One' : i === 1 ? 'Part Two' : 'Part Three'}</span>
+      </div>
+      <h2 class="conversion-section__heading">${section.heading}</h2>
+      <div class="conversion-section__body">
+        ${section.paragraphs.map(p => `<p>${p}</p>`).join('')}
+      </div>
+    `;
+    sectionsEl.appendChild(wrap);
+
+    // Pause image between Part 1 and Part 2
+    if (i === 0) {
+      const pauseWrap = document.createElement('div');
+      pauseWrap.className = 'reveal';
+      pauseWrap.style.cssText = 'max-width: 380px; margin: var(--space-lg) auto;';
+      const pauseImg = renderImage(content.story.pauseImage);
+      pauseImg.style.cssText = 'width:100%; aspect-ratio: 1/1; object-fit: cover;';
+      pauseWrap.appendChild(pauseImg);
+      sectionsEl.appendChild(pauseWrap);
+    }
+  });
+
+  // Prayer
+  const prayerEl = document.getElementById('prayer-block');
+  prayerEl.innerHTML = `
+    <div class="section-label prayer-block__label" style="justify-content: center;">
+      <span class="label">${content.story.prayer.label}</span>
+    </div>
+    <div class="prayer-block__lines">
+      ${content.story.prayer.lines.map(l => `<p>${l}</p>`).join('')}
+    </div>
+  `;
+
+  renderFooter();
+  initReveal();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journey — The Growth of a Quiet Soul</title>
+  <link rel="stylesheet" href="assets/styles/main.css" />
+</head>
+<body>
+
+<div class="page" id="page-journey">
+
+  <!-- Hero -->
+  <section class="hero container" id="hero">
+    <div class="hero__text">
+      <div class="section-label hero__eyebrow reveal">
+        <span class="label">Ateneo de Davao University &nbsp;·&nbsp; SIP Portfolio</span>
+      </div>
+      <h1 class="display-xl hero__name reveal reveal--delay-1">The Growth<br><em>of a</em><br>Quiet Soul</h1>
+      <p class="hero__program reveal reveal--delay-2">Keana Roma &nbsp;·&nbsp; AB Psychology (Accelerated 3-Year)</p>
+      <p class="hero__tagline reveal reveal--delay-3"></p>
+    </div>
+    <div class="hero__image-col reveal reveal--delay-2">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Pause image -->
+  <div class="nature-pause reveal" id="pause-image-1">
+    <!-- Rendered by JS -->
+  </div>
+
+  <!-- Journey Map -->
+  <section class="section container" id="journey-map">
+    <div class="section-label reveal">
+      <span class="label">A Journey Map</span>
+    </div>
+    <h2 class="display-md reveal reveal--delay-1" style="margin-bottom: var(--space-xl); max-width: 30ch;">
+      Three stages. One unfolding soul.
+    </h2>
+
+    <div class="direction-block reveal reveal--delay-1" id="direction-block">
+      <div class="direction-block__image" id="direction-image">
+        <!-- Rendered by JS -->
+      </div>
+      <div class="direction-block__text">
+        <div class="timeline" id="timeline">
+          <div class="timeline__spine"></div>
+          <div class="timeline__stages" id="timeline-stages">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing pause -->
+  <div class="section--sm container reveal" style="max-width: 520px; text-align: center; margin-inline: auto;">
+    <p class="prose" style="font-style: italic; color: var(--color-text-muted);">
+      "You're in the water right now."
+    </p>
+    <div class="divider--short" style="margin-inline: auto; margin-top: 1.5rem;"></div>
+  </div>
+
+</div><!-- /page -->
+
+<script type="module">
+  import { content }       from './data/content.js';
+  import { renderNavbar }  from './scripts/components/navbar.js';
+  import { renderFooter }  from './scripts/components/footer.js';
+  import { initReveal }    from './scripts/utils/reveal.js';
+  import { renderImage }   from './scripts/utils/image.js';
+
+  // Nav
+  renderNavbar('index.html');
+
+  // Hero tagline
+  document.querySelector('.hero__tagline').textContent = content.meta.tagline;
+
+  // Hero image
+  const heroCol = document.querySelector('.hero__image-col');
+  heroCol.appendChild(renderImage(content.journey.heroImage));
+
+  // Pause image
+  const pauseEl = document.getElementById('pause-image-1');
+  pauseEl.appendChild(renderImage(content.journey.pauseImage));
+
+  // Direction image
+  const dirImg = document.getElementById('direction-image');
+  dirImg.appendChild(renderImage(content.journey.directionImage));
+
+  // Timeline stages
+  const stagesContainer = document.getElementById('timeline-stages');
+  content.journey.stages.forEach((stage, i) => {
+    const el = document.createElement('div');
+    el.className = `timeline__stage reveal reveal--delay-${i + 1}`;
+    el.id = `stage-${stage.id}`;
+    el.innerHTML = `
+      <div class="timeline__dot"></div>
+      <p class="timeline__year">${stage.year} &nbsp;·&nbsp; ${stage.period}</p>
+      <h3 class="timeline__stage-title">${stage.title}</h3>
+      <p class="timeline__theme">${stage.theme}</p>
+      <p class="timeline__body">${stage.body}</p>
+      <div class="timeline__milestones">
+        ${stage.milestones.map(m => `<span class="timeline__milestone">${m}</span>`).join('')}
+      </div>
+    `;
+    stagesContainer.appendChild(el);
+  });
+
+  // Activate timeline stages on scroll
+  const stageEls = document.querySelectorAll('.timeline__stage');
+  const stageObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-active');
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+  stageEls.forEach(el => stageObserver.observe(el));
+
+  // Footer
+  renderFooter();
+
+  // Scroll reveals
+  initReveal();
+</script>
+
+</body>
+</html>

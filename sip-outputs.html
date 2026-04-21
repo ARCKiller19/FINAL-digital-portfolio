@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synthesis — The Growth of a Quiet Soul</title>
+  <link rel="stylesheet" href="assets/styles/main.css" />
+</head>
+<body>
+
+<div class="page" id="page-synthesis">
+
+  <!-- Page Header -->
+  <section class="section container">
+    <div class="section-label reveal">
+      <span class="label">SIP Outputs &amp; Reflections</span>
+    </div>
+    <h1 class="display-lg reveal reveal--delay-1" style="max-width: 22ch; margin-bottom: 1rem;">
+      Solidarity in Mission:<br><em>Finding Grace in the Journey</em>
+    </h1>
+    <p class="prose reveal reveal--delay-2">
+      Integration of formation, film, retreat, and community in one concluding synthesis.
+    </p>
+  </section>
+
+  <!-- Soul Reflection Section -->
+  <section class="sip-section container" id="soul-section">
+    <div class="section-label reveal">
+      <span class="label" id="soul-label"></span>
+    </div>
+
+    <!-- Video placeholder -->
+    <div class="reveal reveal--delay-1">
+      <div class="video-placeholder">
+        <div class="video-placeholder__icon">&#9654;</div>
+        <p class="video-placeholder__label">Soul — Reaction Video</p>
+      </div>
+    </div>
+
+    <div id="soul-prompts">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Collage image break -->
+  <div class="reveal" id="community-collage" style="margin-block: var(--space-xl);">
+    <!-- Rendered by JS -->
+  </div>
+
+  <!-- Retreat Fruits Section -->
+  <section class="sip-section container" id="retreat-section">
+    <div class="section-label reveal">
+      <span class="label" id="retreat-label"></span>
+    </div>
+    <div id="retreat-body" class="reveal reveal--delay-1">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Group Presentation Section -->
+  <section class="sip-section container" id="presentation-section">
+    <div class="section-label reveal">
+      <span class="label">Group Presentation Summary</span>
+    </div>
+    <div class="reveal reveal--delay-1">
+      <div class="video-placeholder" style="aspect-ratio: 16/9; max-width: 640px;">
+        <div class="video-placeholder__icon">&#9654;</div>
+        <p class="video-placeholder__label">Solidarity in Mission Presentation</p>
+      </div>
+    </div>
+    <p class="prose reveal reveal--delay-2" style="margin-top: var(--space-md); color: var(--color-text-muted); font-style: italic;">
+      Group presentation materials and summary will be added here.
+    </p>
+  </section>
+
+  <!-- Closing reflection -->
+  <section class="section container reveal" style="text-align: center; max-width: 520px; margin-inline: auto;">
+    <div class="divider"></div>
+    <p class="prose" style="font-style: italic; color: var(--color-text-muted); text-align: center; margin-inline: auto;">
+      "The deep, lasting peace comes from aligning my career in psychology with a genuine desire to serve others."
+    </p>
+    <div class="divider--short" style="margin-inline: auto; margin-top: 1.5rem;"></div>
+  </section>
+
+</div><!-- /page -->
+
+<script type="module">
+  import { content }       from './data/content.js';
+  import { renderNavbar }  from './scripts/components/navbar.js';
+  import { renderFooter }  from './scripts/components/footer.js';
+  import { initReveal }    from './scripts/utils/reveal.js';
+  import { renderImage }   from './scripts/utils/image.js';
+
+  renderNavbar('sip-outputs.html');
+
+  // Soul section
+  const { soulReflections, retreatFruits, collageImage } = content.community;
+
+  document.getElementById('soul-label').textContent = soulReflections.label;
+
+  const promptsEl = document.getElementById('soul-prompts');
+  soulReflections.prompts.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = `reflection-prompt reveal reveal--delay-${i + 1}`;
+    div.innerHTML = `
+      <p class="reflection-prompt__q">${p.question}</p>
+      <p class="reflection-prompt__a">${p.answer}</p>
+    `;
+    promptsEl.appendChild(div);
+  });
+
+  // Collage
+  const collageEl = document.getElementById('community-collage');
+  const collageImg = renderImage(collageImage);
+  collageImg.style.cssText = 'width:100%; aspect-ratio: 21/8; object-fit: cover;';
+  collageEl.appendChild(collageImg);
+
+  // Retreat
+  document.getElementById('retreat-label').textContent = retreatFruits.label;
+  const retreatBodyEl = document.getElementById('retreat-body');
+  retreatFruits.body.forEach((p, i) => {
+    const para = document.createElement('p');
+    para.className = 'prose';
+    para.style.marginBottom = '1.2em';
+    para.textContent = p;
+    retreatBodyEl.appendChild(para);
+  });
+
+  renderFooter();
+  initReveal();
+</script>
+
+</body>
+</html>
