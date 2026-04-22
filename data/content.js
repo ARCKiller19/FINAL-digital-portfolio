@@ -59,7 +59,7 @@ export const content = {
       },
       {
         id:      'bloom',
-        year:    '2025',
+        year:    '2026',
         title:   'The Bloom',
         theme:   'Achievement',
         period:  'Quiet Persistence, Growth, Clinical Practice',
@@ -398,7 +398,7 @@ export const content = {
         },
         {
           question: 'Connect some resonances from today\'s session and the movie.',
-          answer:   'Joe\'s intense obsession with his jazz career perfectly mirrors St. Ignatius\'s early obsession with chivalry and military glory. Joe falling down that manhole was his exact "cannonball moment" at Pamplona: it forced everything to stop. Just like Ignatius during his recovery, Joe had to learn the Discernment of Spirits. He realized that the temporary thrill of a gig (worldly glory) left him feeling empty, but appreciating the simple, everyday beauty of life gave him a deep, lasting peace.'
+          answer:   'Joe\'s intense obsession with his jazz career perfectly mirrors St. Ignatius\' early obsession with chivalry and military glory. Joe falling down that manhole was his exact "cannonball moment" at Pamplona: it forced everything to stop. Just like Ignatius during his recovery, Joe had to learn the Discernment of Spirits. He realized that the temporary thrill of a gig (worldly glory) left him feeling empty, but appreciating the simple, everyday beauty of life gave him a deep, lasting peace.'
         }
       ]
     },
