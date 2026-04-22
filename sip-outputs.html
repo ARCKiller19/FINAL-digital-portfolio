@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synthesis — The Growth of a Quiet Soul</title>
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <style>
+    /* --- GROUP PRESENTATION CAROUSEL RESIZING --- */
+    .carousel-section {
+      max-width: 1000px; 
+      margin-inline: auto; 
+    }
+
+    /* This stops the grey boxes from stretching taller than the image */
+    .carousel-track {
+      align-items: flex-start !important; 
+    }
+    
+    /* This removes the grey background and padding completely */
+    .carousel-track > div {
+      background: transparent !important; 
+      padding: 0 !important;
+    }
+
+    .carousel-track img {
+      width: 100%;
+      height: auto !important; 
+      aspect-ratio: 16 / 9; 
+      object-fit: cover !important; 
+      border-radius: 8px;
+      display: block;
+    }
+    /* ── Aesthetic Audio Player (shared with conversion.html) ── */
+    .audio-player {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      padding: 1.75rem 2rem;
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+    }
+
+    .audio-player__label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+    }
+
+    .audio-player__title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--color-text);
+    }
+
+    .audio-player__controls {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .audio-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+      transition: color 150ms ease, background 150ms ease;
+    }
+
+    .audio-btn:hover {
+      color: var(--color-text);
+      background: var(--color-surface);
+    }
+
+    .audio-btn--play {
+      width: 2.8rem;
+      height: 2.8rem;
+      background: var(--color-text);
+      color: var(--color-bg);
+    }
+
+    .audio-btn--play:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    .audio-btn svg {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+      fill: currentColor;
+    }
+
+    .audio-btn--play svg {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+
+    .audio-player__scrub {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .audio-player__time {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+      min-width: 2.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .audio-player__time--end {
+      text-align: right;
+    }
+
+    .audio-player__track {
+      flex: 1;
+      position: relative;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      min-width: 0;
+    }
+
+    .audio-player__rail {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--color-border);
+    }
+
+    .audio-player__fill {
+      position: absolute;
+      left: 0;
+      height: 1px;
+      background: var(--color-text-muted);
+      width: 0%;
+    }
+
+    .audio-player__thumb {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--color-text);
+      transform: translateX(-50%);
+      left: 0%;
+      transition: transform 150ms ease;
+    }
+
+    .audio-player__track:hover .audio-player__thumb {
+      transform: translateX(-50%) scale(1.4);
+    }
+
+    /* ── Carousel (Group Presentation) — mirrors passion-plan.html ── */
+    .carousel-section {
+      padding-block: var(--space-xl);
+    }
+
+    .carousel-section__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      gap: 1rem;
+    }
+
+    .carousel-arrows {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .carousel-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg);
+      color: var(--color-text-muted);
+      transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+    }
+
+    .carousel-arrow:hover {
+      color: var(--color-text);
+      border-color: var(--color-text-muted);
+      background: var(--color-surface);
+    }
+
+    .carousel-arrow:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .carousel-arrow svg {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .carousel-track-outer {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      flex: 0 0 calc(33.333% - 0.67rem);
+      background: var(--color-surface);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-slide .img-placeholder {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: unset;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+
+    .carousel-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: background 200ms ease, transform 200ms ease;
+      cursor: pointer;
+    }
+
+    .carousel-dot.is-active {
+      background: var(--color-text-muted);
+      transform: scale(1.4);
+    }
+
+    @media (max-width: 768px) {
+      .carousel-slide {
+        flex: 0 0 calc(80% - 0.5rem);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page" id="page-synthesis">
+
+  <!-- Page Header -->
+  <section class="section container">
+    <div class="section-label reveal">
+      <span class="label">SIP Outputs &amp; Reflections</span>
+    </div>
+    <h1 class="display-lg reveal reveal--delay-1" style="max-width: 22ch; margin-bottom: 1rem;">
+      Solidarity in Mission:<br><em>Finding Grace in the Journey</em>
+    </h1>
+    <p class="prose reveal reveal--delay-2">
+      Integration of formation, film, retreat, and community in one concluding synthesis.
+    </p>
+  </section>
+
+  <!-- ── TASK 4: 1st SIP Activity — What is Beyond Myself ── -->
+  <section class="sip-section container" id="sip-activity-1">
+    <div class="section-label reveal">
+      <span class="label" id="activity1-label"></span>
+    </div>
+    <div id="activity1-prompts">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ── Soul Movie Reflection Section ── -->
+  <section class="sip-section container" id="soul-section">
+    <div class="section-label reveal">
+      <span class="label" id="soul-label"></span>
+    </div>
+
+    <!-- Aesthetic Audio Player for Soul voiceover -->
+    <div class="audio-player reveal reveal--delay-1" id="soul-player" style="margin-bottom: var(--space-md);">
+      <p class="audio-player__label">Soul — Reaction Video</p>
+      <p class="audio-player__title">What is Soul? A Personal Reflection on Meaning and Everyday Life</p>
+
+      <div class="audio-player__controls">
+
+        <!-- Rewind 10s -->
+        <button class="audio-btn" id="soul-rwd" aria-label="Rewind 10 seconds">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v2c4.86-2.34 8-7.06 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-1.75v-5H9v-1.5h3.5v6.5zM7.88 8.5A6.49 6.49 0 0 1 11.5 7c1.27 0 2.46.36 3.46.98L13.5 9.45A4.48 4.48 0 0 0 11.5 9c-.87 0-1.68.25-2.37.67L7.88 8.5z"/>
+          </svg>
+        </button>
+
+        <!-- Play / Pause -->
+        <button class="audio-btn audio-btn--play" id="soul-play" aria-label="Play">
+          <svg id="soul-play-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="soul-pause-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+        </button>
+
+        <!-- Fast-forward 10s -->
+        <button class="audio-btn" id="soul-fwd" aria-label="Fast-forward 10 seconds">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 2c-4.69 0-8.5 3.81-8.5 8.5 0 4.44 3.14 9.16 8 11.5v-2h.5c4.69 0 8.5-3.81 8.5-8.5S17.19 2 12.5 2zm-.5 14.5h-1.75v-5H8.5V10H12v6.5zm5.62-8A6.47 6.47 0 0 0 12.5 7c-1.27 0-2.46.36-3.46.98l1.46 1.47A4.48 4.48 0 0 1 12.5 9c.87 0 1.68.25 2.37.67l1.25-1.17z"/>
+          </svg>
+        </button>
+
+        <!-- Scrubber -->
+        <div class="audio-player__scrub">
+          <span class="audio-player__time" id="soul-current">0:00</span>
+          <div class="audio-player__track" id="soul-track" role="slider" aria-label="Seek" tabindex="0">
+            <div class="audio-player__rail"></div>
+            <div class="audio-player__fill" id="soul-fill"></div>
+            <div class="audio-player__thumb" id="soul-thumb"></div>
+          </div>
+          <span class="audio-player__time audio-player__time--end" id="soul-duration">0:00</span>
+        </div>
+
+      </div><!-- /controls -->
+
+      <!-- Hidden HTML5 audio element -->
+      <audio id="soul-audio" preload="metadata">
+        <source src="/assets/audio/voiceover-soul.mp3" type="audio/mpeg" />
+      </audio>
+    </div><!-- /audio-player -->
+
+    <div id="soul-prompts">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Collage image break -->
+  <div class="reveal" id="community-collage" style="margin-block: var(--space-xl);">
+    <!-- Rendered by JS -->
+  </div>
+
+  <!-- Retreat Fruits Section -->
+  <section class="sip-section container" id="retreat-section">
+    <div class="section-label reveal">
+      <span class="label" id="retreat-label"></span>
+    </div>
+    <div id="retreat-body" class="reveal reveal--delay-1">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Group Presentation Section -->
+  <section class="sip-section container" id="presentation-section">
+    <div class="carousel-section">
+      <div class="carousel-section__header reveal">
+        <div>
+          <div class="section-label" style="margin-bottom: 0.5rem;">
+            <span class="label" id="group-label"></span>
+          </div>
+          <p class="prose-sm" style="color: var(--color-text-muted); max-width: 42ch;">
+            A visual record of our group's collaborative formation and shared mission.
+          </p>
+        </div>
+        <div class="carousel-arrows">
+          <button class="carousel-arrow" id="btn-group-prev" aria-label="Previous slides" disabled>
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="carousel-arrow" id="btn-group-next" aria-label="Next slides">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel-track-outer reveal reveal--delay-1">
+        <div class="carousel-track" id="group-carousel">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <div class="carousel-dots" id="group-carousel-dots">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing reflection -->
+  <section class="section container reveal" style="text-align: center; max-width: 520px; margin-inline: auto;">
+    <div class="divider"></div>
+    <p class="prose" style="font-style: italic; color: var(--color-text-muted); text-align: center; margin-inline: auto;">
+      "The deep, lasting peace comes from aligning my career in psychology with a genuine desire to serve others."
+    </p>
+    <div class="divider--short" style="margin-inline: auto; margin-top: 1.5rem;"></div>
+  </section>
+
+</div><!-- /page -->
+
+<script type="module">
+  import { content }       from './data/content.js';
+  import { renderNavbar }  from './scripts/components/navbar.js';
+  import { renderFooter }  from './scripts/components/footer.js';
+  import { initReveal }    from './scripts/utils/reveal.js';
+  import { renderImage }   from './scripts/utils/image.js';
+
+  renderNavbar('sip-outputs.html');
+
+  const { sipActivity1, soulReflections, retreatFruits, collageImage } = content.community;
+
+  // ── Task 4: SIP Activity 1 ───────────────────────────────
+  document.getElementById('activity1-label').textContent = sipActivity1.label;
+
+  const activity1El = document.getElementById('activity1-prompts');
+  sipActivity1.prompts.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = `reflection-prompt reveal reveal--delay-${i + 1}`;
+    div.innerHTML = `
+      <p class="reflection-prompt__q">${p.question}</p>
+      <p class="reflection-prompt__a">${p.answer}</p>
+    `;
+    activity1El.appendChild(div);
+  });
+
+  // ── Soul section ─────────────────────────────────────────
+  document.getElementById('soul-label').textContent = soulReflections.label;
+
+  const promptsEl = document.getElementById('soul-prompts');
+  soulReflections.prompts.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = `reflection-prompt reveal reveal--delay-${i + 1}`;
+    div.innerHTML = `
+      <p class="reflection-prompt__q">${p.question}</p>
+      <p class="reflection-prompt__a">${p.answer}</p>
+    `;
+    promptsEl.appendChild(div);
+  });
+
+  // ── Collage ───────────────────────────────────────────────
+  const collageEl = document.getElementById('community-collage');
+  const collageImg = renderImage(collageImage);
+  collageImg.style.cssText = 'width:100%; aspect-ratio: 21/8; object-fit: cover;';
+  collageEl.appendChild(collageImg);
+
+  // ── Retreat ───────────────────────────────────────────────
+  document.getElementById('retreat-label').textContent = retreatFruits.label;
+  const retreatBodyEl = document.getElementById('retreat-body');
+  retreatFruits.body.forEach((p) => {
+    const para = document.createElement('p');
+    para.className = 'prose';
+    para.style.marginBottom = '1.2em';
+    para.textContent = p;
+    retreatBodyEl.appendChild(para);
+  });
+
+  // ── Group Presentation Carousel ───────────────────────────
+  const { groupPresentation } = content.community;
+
+  document.getElementById('group-label').textContent = groupPresentation.label;
+
+  const groupTrackEl  = document.getElementById('group-carousel');
+  const groupDotsEl   = document.getElementById('group-carousel-dots');
+  const groupPrevBtn  = document.getElementById('btn-group-prev');
+  const groupNextBtn  = document.getElementById('btn-group-next');
+
+  const groupSlides        = groupPresentation.slides;
+  const groupVisibleCount  = window.innerWidth <= 768 ? 1 : 3;
+  let   groupCurrentIndex  = 0;
+
+  // Build slides
+  groupSlides.forEach((slide, i) => {
+    const el = document.createElement('div');
+    el.className = 'carousel-slide';
+
+    if (slide.src) {
+      const img     = document.createElement('img');
+      img.src       = slide.src;
+      img.alt       = slide.alt || `Group Slide ${i + 1}`;
+      img.loading   = 'lazy';
+      el.appendChild(img);
+    } else {
+      const ph = document.createElement('div');
+      ph.className = 'img-placeholder';
+      ph.setAttribute('data-slot', `group-slide-${i + 1}`);
+      el.appendChild(ph);
+    }
+
+    groupTrackEl.appendChild(el);
+  });
+
+  // Build dots — one per visible group
+  const groupTotalGroups = Math.ceil(groupSlides.length / groupVisibleCount);
+  for (let i = 0; i < groupTotalGroups; i++) {
+    const dot = document.createElement('button');
+    dot.className = `carousel-dot${i === 0 ? ' is-active' : ''}`;
+    dot.setAttribute('aria-label', `Go to group ${i + 1}`);
+    dot.addEventListener('click', () => groupGoTo(i * groupVisibleCount));
+    groupDotsEl.appendChild(dot);
+  }
+
+  function groupGoTo(index) {
+    const slideEls = groupTrackEl.querySelectorAll('.carousel-slide');
+    const slideW   = slideEls[0] ? slideEls[0].offsetWidth + 16 : 0; // 16px = 1rem gap
+    const maxIndex = Math.max(0, groupSlides.length - groupVisibleCount);
+    groupCurrentIndex = Math.max(0, Math.min(index, maxIndex));
+
+    groupTrackEl.style.transform = `translateX(-${groupCurrentIndex * slideW}px)`;
+
+    groupPrevBtn.disabled = groupCurrentIndex === 0;
+    groupNextBtn.disabled = groupCurrentIndex >= maxIndex;
+
+    const dotEls   = groupDotsEl.querySelectorAll('.carousel-dot');
+    const dotIndex = Math.floor(groupCurrentIndex / groupVisibleCount);
+    dotEls.forEach((d, i) => d.classList.toggle('is-active', i === dotIndex));
+  }
+
+  groupPrevBtn.addEventListener('click', () => groupGoTo(groupCurrentIndex - groupVisibleCount));
+  groupNextBtn.addEventListener('click', () => groupGoTo(groupCurrentIndex + groupVisibleCount));
+
+  window.addEventListener('resize', () => groupGoTo(groupCurrentIndex), { passive: true });
+
+  renderFooter();
+  initReveal();
+</script>
+
+<script>
+  /* ── Audio Player Factory ────────────────────────────── */
+  function initAudioPlayer(ids) {
+    const audio     = document.getElementById(ids.audio);
+    const playBtn   = document.getElementById(ids.play);
+    const playIcon  = document.getElementById(ids.playIcon);
+    const pauseIcon = document.getElementById(ids.pauseIcon);
+    const rwdBtn    = document.getElementById(ids.rwd);
+    const fwdBtn    = document.getElementById(ids.fwd);
+    const track     = document.getElementById(ids.track);
+    const fill      = document.getElementById(ids.fill);
+    const thumb     = document.getElementById(ids.thumb);
+    const currentEl = document.getElementById(ids.current);
+    const durEl     = document.getElementById(ids.duration);
+
+    if (!audio) return;
+
+    function fmt(s) {
+      if (isNaN(s) || !isFinite(s)) return '0:00';
+      const m   = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${m}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    function updateProgress() {
+      if (!audio.duration) return;
+      const pct = (audio.currentTime / audio.duration) * 100;
+      fill.style.width = pct + '%';
+      thumb.style.left = pct + '%';
+      currentEl.textContent = fmt(audio.currentTime);
+    }
+
+    audio.addEventListener('loadedmetadata', () => {
+      durEl.textContent = fmt(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', updateProgress);
+
+    audio.addEventListener('ended', () => {
+      playIcon.style.display  = '';
+      pauseIcon.style.display = 'none';
+      playBtn.setAttribute('aria-label', 'Play');
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playIcon.style.display  = 'none';
+        pauseIcon.style.display = '';
+        playBtn.setAttribute('aria-label', 'Pause');
+      } else {
+        audio.pause();
+        playIcon.style.display  = '';
+        pauseIcon.style.display = 'none';
+        playBtn.setAttribute('aria-label', 'Play');
+      }
+    });
+
+    rwdBtn.addEventListener('click', () => {
+      audio.currentTime = Math.max(0, audio.currentTime - 10);
+    });
+
+    fwdBtn.addEventListener('click', () => {
+      audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10);
+    });
+
+    function seekTo(clientX) {
+      if (!audio.duration) return;
+      const rect = track.getBoundingClientRect();
+      const x    = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      audio.currentTime = (x / rect.width) * audio.duration;
+    }
+
+    let dragging = false;
+    track.addEventListener('mousedown',  (e) => { dragging = true; seekTo(e.clientX); });
+    document.addEventListener('mousemove',(e) => { if (dragging) seekTo(e.clientX); });
+    document.addEventListener('mouseup',  ()  => { dragging = false; });
+
+    track.addEventListener('touchstart', (e) => { dragging = true; seekTo(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('touchmove',(e) => { if (dragging) seekTo(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('touchend', ()  => { dragging = false; });
+
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  audio.currentTime = Math.max(0, audio.currentTime - 5);
+      if (e.key === 'ArrowRight') audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 5);
+    });
+  }
+
+  initAudioPlayer({
+    audio:     'soul-audio',
+    play:      'soul-play',
+    playIcon:  'soul-play-icon',
+    pauseIcon: 'soul-pause-icon',
+    rwd:       'soul-rwd',
+    fwd:       'soul-fwd',
+    track:     'soul-track',
+    fill:      'soul-fill',
+    thumb:     'soul-thumb',
+    current:   'soul-current',
+    duration:  'soul-duration'
+  });
+</script>
+
+</body>
+</html>

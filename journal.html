@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal — The Growth of a Quiet Soul</title>
+  <link rel="stylesheet" href="assets/styles/main.css" />
+</head>
+<body>
+
+<div class="page" id="page-journal">
+
+  <!-- Page Header -->
+  <section class="section container">
+    <div class="section-label reveal">
+      <span class="label">Interior Life</span>
+    </div>
+    <h1 class="display-lg reveal reveal--delay-1" style="margin-bottom: 1.5rem; max-width: 22ch;">
+      Ignatian Reflections:<br><em>Finding Grace in Chaos</em>
+    </h1>
+    <p class="prose reveal reveal--delay-2" id="journal-intro"></p>
+  </section>
+
+  <!-- Collage block 1 -->
+  <div class="collage-block container reveal" id="collage-1" style="max-width: 900px; margin-inline: auto;">
+    <!-- Rendered by JS -->
+  </div>
+
+  <!-- Journal grid -->
+  <section class="section container" id="journal-entries">
+    <div class="journal-grid" id="journal-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Collage block 2 -->
+  <div class="collage-block reveal" id="collage-2">
+    <!-- Rendered by JS -->
+  </div>
+
+</div><!-- /page -->
+
+<script type="module">
+  import { content }       from './data/content.js';
+  import { renderNavbar }  from './scripts/components/navbar.js';
+  import { renderFooter }  from './scripts/components/footer.js';
+  import { initReveal }    from './scripts/utils/reveal.js';
+  import { renderImage }   from './scripts/utils/image.js';
+  import { initModal, openModal } from './scripts/components/modal.js';
+
+  renderNavbar('journal.html');
+  initModal();
+
+  // Intro
+  document.getElementById('journal-intro').textContent = content.journal.intro;
+
+  // Collage 1
+  const c1 = document.getElementById('collage-1');
+  const img1 = renderImage(content.journal.collageImages[0]);
+  img1.style.cssText = 'width:100%; aspect-ratio: 16/7; object-fit: cover;';
+  c1.appendChild(img1);
+
+  // Journal grid
+  const gridEl = document.getElementById('journal-grid');
+  const gridClasses = [
+    'j-card-1', 'j-card-2', 'j-card-3',
+    'j-card-4', 'j-card-5', 'j-card-6'
+  ];
+
+  content.journal.entries.forEach((entry, i) => {
+    const card = document.createElement('article');
+    card.className = `journal-card ${gridClasses[i]} reveal reveal--delay-${(i % 3) + 1}`;
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `Read journal entry: ${entry.title}`);
+
+    // Image
+    const imgWrapper = document.createElement('div');
+    imgWrapper.className = 'journal-card__image';
+    const img = renderImage(entry.image, { style: 'width:100%; height:100%;' });
+    imgWrapper.appendChild(img);
+
+    card.innerHTML = `
+      <div class="journal-card__body">
+        <p class="journal-card__number">${entry.number}</p>
+        <h3 class="journal-card__title">${entry.title}</h3>
+        <p class="journal-card__excerpt">${entry.excerpt}</p>
+        <span class="journal-card__read">Read &rarr;</span>
+      </div>
+    `;
+    card.prepend(imgWrapper);
+
+    card.addEventListener('click', () => openModal(entry));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') openModal(entry);
+    });
+
+    gridEl.appendChild(card);
+  });
+
+  // Collage 2
+  const c2 = document.getElementById('collage-2');
+  const img2 = renderImage(content.journal.collageImages[1]);
+  img2.style.cssText = 'width:100%; aspect-ratio: 21/9; object-fit: cover;';
+  c2.appendChild(img2);
+
+  renderFooter();
+  initReveal();
+</script>
+
+</body>
+</html>

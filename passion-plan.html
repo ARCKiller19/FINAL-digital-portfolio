@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passion Plan — The Growth of a Quiet Soul</title>
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <style>
+    /* ── Arrupe Journey Carousel ────────────────────────── */
+    .carousel-section {
+      padding-block: var(--space-xl);
+    }
+
+    .carousel-section__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      gap: 1rem;
+    }
+
+    .carousel-arrows {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .carousel-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg);
+      color: var(--color-text-muted);
+      transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+    }
+
+    .carousel-arrow:hover {
+      color: var(--color-text);
+      border-color: var(--color-text-muted);
+      background: var(--color-surface);
+    }
+
+    .carousel-arrow:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .carousel-arrow svg {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .carousel-track-outer {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+      align-items: flex-start !important; /* Stops the boxes from stretching vertically */
+    }
+
+    .carousel-slide {
+      flex: 0 0 calc(33.333% - 0.67rem);
+      background: transparent !important; /* Removes the grey background */
+      overflow: hidden;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: auto !important;
+      aspect-ratio: 16 / 9; /* Forces the perfect presentation rectangle */
+      object-fit: cover !important;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .carousel-slide .img-placeholder {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: unset;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+
+    .carousel-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: background 200ms ease, transform 200ms ease;
+      cursor: pointer;
+    }
+
+    .carousel-dot.is-active {
+      background: var(--color-text-muted);
+      transform: scale(1.4);
+    }
+
+    /* ── Arrupe Insights Cards ──────────────────────────── */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+    }
+
+    .insight-card {
+      background: var(--color-bg);
+      padding: 2.25rem 2rem 2.5rem;
+      transition: background 200ms ease;
+    }
+
+    .insight-card:hover {
+      background: var(--color-bg-alt);
+    }
+
+    .insight-card__label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 0.45rem;
+    }
+
+    .insight-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .insight-card__points {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .insight-card__point {
+      font-family: var(--font-serif);
+      font-size: 0.975rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--color-text-muted);
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .insight-card__point::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 0.4rem;
+      height: 1px;
+      background: var(--color-accent-soft);
+    }
+
+    @media (max-width: 768px) {
+      .carousel-slide {
+        flex: 0 0 calc(80% - 0.5rem);
+      }
+
+      .insights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page" id="page-vision">
+
+  <!-- Vision Hero -->
+  <section class="vision-hero container" id="vision-hero">
+    <div class="vision-hero__text">
+      <div class="section-label reveal">
+        <span class="label">Vision &amp; Purpose</span>
+      </div>
+      <h1 class="display-lg reveal reveal--delay-1" style="margin-bottom: 1.5rem;">
+        My Ikigai<br><em>in Clinical Psychology</em>
+      </h1>
+      <p class="prose reveal reveal--delay-2">
+        Where passion meets vocation meets mission meets profession: the intersection that points toward a life of meaning.
+      </p>
+    </div>
+    <div class="vision-hero__image reveal reveal--delay-1" id="vision-hero-image">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Ikigai Grid -->
+  <section class="section container" id="ikigai-section">
+    <div class="section-label reveal">
+      <span class="label">The Four Quadrants</span>
+    </div>
+    <div class="ikigai-grid reveal reveal--delay-1" id="ikigai-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Mission Statement -->
+  <section class="section" id="mission-section">
+    <div class="mission-block reveal">
+      <div class="section-label" style="justify-content: center; margin-bottom: 1.5rem;">
+        <span class="label">Personal Mission Statement</span>
+      </div>
+      <p class="mission-block__quote" id="mission-statement"></p>
+    </div>
+
+    <!-- Grounding still life -->
+    <div class="reveal" style="max-width: 340px; margin: var(--space-lg) auto;" id="grounding-image">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="mission-block reveal" style="margin-top: 0;">
+      <div class="section-label" style="justify-content: center; margin-bottom: 1.5rem;">
+        <span class="label">The Person I Dream of Becoming</span>
+      </div>
+      <p class="mission-block__quote" id="vision-statement"></p>
+    </div>
+  </section>
+
+  <!-- ── Task 2: My Arrupe Journey Carousel ── -->
+  <section class="carousel-section container" id="arrupe-carousel-section">
+    <div class="carousel-section__header reveal">
+      <div>
+        <div class="section-label" style="margin-bottom: 0.5rem;">
+          <span class="label" id="arrupe-label"></span>
+        </div>
+        <p class="prose-sm" style="color: var(--color-text-muted); max-width: 42ch;">
+          A visual record of formation through the Arrupe program at AdDU.
+        </p>
+      </div>
+      <div class="carousel-arrows">
+        <button class="carousel-arrow" id="carousel-prev" aria-label="Previous slides" disabled>
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="carousel-arrow" id="carousel-next" aria-label="Next slides">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel-track-outer reveal reveal--delay-1">
+      <div class="carousel-track" id="carousel-track">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <div class="carousel-dots" id="carousel-dots">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ── Task 3: Arrupe Insights Cards ── -->
+  <section class="section container" id="arrupe-insights-section">
+    <div class="section-label reveal">
+      <span class="label" id="insights-label"></span>
+    </div>
+    <div class="insights-grid reveal reveal--delay-1" id="insights-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+</div><!-- /page -->
+
+<script type="module">
+  import { content }       from './data/content.js';
+  import { renderNavbar }  from './scripts/components/navbar.js';
+  import { renderFooter }  from './scripts/components/footer.js';
+  import { initReveal }    from './scripts/utils/reveal.js';
+  import { renderImage }   from './scripts/utils/image.js';
+
+  renderNavbar('passion-plan.html');
+
+  // Hero image
+  const heroImgEl = document.getElementById('vision-hero-image');
+  heroImgEl.appendChild(renderImage(content.vision.heroImage));
+
+  // Ikigai grid
+  const grid = document.getElementById('ikigai-grid');
+  content.vision.ikigai.forEach(cell => {
+    const div = document.createElement('div');
+    div.className = 'ikigai-cell';
+    div.innerHTML = `
+      <p class="ikigai-cell__label">${cell.label}</p>
+      <h3 class="ikigai-cell__title">${cell.title}</h3>
+      <p class="ikigai-cell__body">${cell.body}</p>
+    `;
+    grid.appendChild(div);
+  });
+
+  // Mission + Vision
+  document.getElementById('mission-statement').textContent = content.vision.missionStatement;
+  document.getElementById('vision-statement').textContent  = content.vision.vision;
+
+  // Grounding image
+  const groundEl = document.getElementById('grounding-image');
+  const groundImg = renderImage(content.vision.groundingImage);
+  groundImg.style.cssText = 'width:100%; aspect-ratio: 4/3; object-fit: cover;';
+  groundEl.appendChild(groundImg);
+
+  // ── Task 2: Arrupe Journey Carousel ─────────────────────
+  const { arrupeJourney, arrupeInsights } = content.vision;
+
+  document.getElementById('arrupe-label').textContent = arrupeJourney.label;
+
+  const trackEl  = document.getElementById('carousel-track');
+  const dotsEl   = document.getElementById('carousel-dots');
+  const prevBtn  = document.getElementById('carousel-prev');
+  const nextBtn  = document.getElementById('carousel-next');
+
+  const slides       = arrupeJourney.slides;
+  const visibleCount = window.innerWidth <= 768 ? 1 : 3;
+  let   currentIndex = 0;
+
+  // Build slides
+  slides.forEach((slide, i) => {
+    const el = document.createElement('div');
+    el.className = 'carousel-slide';
+
+    if (slide.src) {
+      const img = document.createElement('img');
+      img.src     = slide.src;
+      img.alt     = slide.alt || `Slide ${i + 1}`;
+      img.loading = 'lazy';
+      el.appendChild(img);
+    } else {
+      const ph = document.createElement('div');
+      ph.className = 'img-placeholder';
+      ph.setAttribute('data-slot', `arrupe-slide-${i + 1}`);
+      el.appendChild(ph);
+    }
+
+    trackEl.appendChild(el);
+  });
+
+  // Build dots (one per visible group)
+  const totalGroups = Math.ceil(slides.length / visibleCount);
+  for (let i = 0; i < totalGroups; i++) {
+    const dot = document.createElement('button');
+    dot.className = `carousel-dot${i === 0 ? ' is-active' : ''}`;
+    dot.setAttribute('aria-label', `Go to group ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i * visibleCount));
+    dotsEl.appendChild(dot);
+  }
+
+  function goTo(index) {
+    const slideEls  = trackEl.querySelectorAll('.carousel-slide');
+    const slideW    = slideEls[0] ? slideEls[0].offsetWidth + 16 : 0; // 16 = gap (1rem)
+    const maxIndex  = Math.max(0, slides.length - visibleCount);
+    currentIndex    = Math.max(0, Math.min(index, maxIndex));
+
+    trackEl.style.transform = `translateX(-${currentIndex * slideW}px)`;
+
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
+
+    // Update dots
+    const dotEls    = dotsEl.querySelectorAll('.carousel-dot');
+    const dotIndex  = Math.floor(currentIndex / visibleCount);
+    dotEls.forEach((d, i) => d.classList.toggle('is-active', i === dotIndex));
+  }
+
+  prevBtn.addEventListener('click', () => goTo(currentIndex - visibleCount));
+  nextBtn.addEventListener('click', () => goTo(currentIndex + visibleCount));
+
+  // Recalculate on resize
+  window.addEventListener('resize', () => goTo(currentIndex), { passive: true });
+
+  // ── Task 3: Arrupe Insights Cards ───────────────────────
+  document.getElementById('insights-label').textContent = arrupeInsights.label;
+
+  const insightsGrid = document.getElementById('insights-grid');
+  arrupeInsights.cards.forEach(card => {
+    const div = document.createElement('div');
+    div.className = 'insight-card';
+    div.innerHTML = `
+      <p class="insight-card__label">${card.label}</p>
+      <h3 class="insight-card__title">${card.title}</h3>
+      <div class="insight-card__points">
+        ${card.points.map(pt => `<p class="insight-card__point">${pt}</p>`).join('')}
+      </div>
+    `;
+    insightsGrid.appendChild(div);
+  });
+
+  renderFooter();
+  initReveal();
+</script>
+
+</body>
+</html>

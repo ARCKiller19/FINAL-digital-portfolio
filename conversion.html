@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My River Cardoner — The Growth of a Quiet Soul</title>
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <style>
+    /* ── Aesthetic Audio Player ─────────────────────────── */
+    .audio-player {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      padding: 1.75rem 2rem;
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+    }
+
+    .audio-player__label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+    }
+
+    .audio-player__title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--color-text);
+    }
+
+    .audio-player__controls {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .audio-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+      transition: color 150ms ease, background 150ms ease;
+    }
+
+    .audio-btn:hover {
+      color: var(--color-text);
+      background: var(--color-surface);
+    }
+
+    .audio-btn--play {
+      width: 2.8rem;
+      height: 2.8rem;
+      background: var(--color-text);
+      color: var(--color-bg);
+    }
+
+    .audio-btn--play:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    .audio-btn svg {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+      fill: currentColor;
+    }
+
+    .audio-btn--play svg {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+
+    .audio-player__scrub {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .audio-player__time {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+      min-width: 2.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .audio-player__time--end {
+      text-align: right;
+    }
+
+    .audio-player__track {
+      flex: 1;
+      position: relative;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      min-width: 0;
+    }
+
+    .audio-player__rail {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--color-border);
+    }
+
+    .audio-player__fill {
+      position: absolute;
+      left: 0;
+      height: 1px;
+      background: var(--color-text-muted);
+      width: 0%;
+    }
+
+    .audio-player__thumb {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--color-text);
+      transform: translateX(-50%);
+      left: 0%;
+      transition: transform 150ms ease;
+    }
+
+    .audio-player__track:hover .audio-player__thumb {
+      transform: translateX(-50%) scale(1.4);
+    }
+  </style>
+</head>
+<body>
+
+<div class="page" id="page-conversion">
+
+  <!-- Hero image -->
+  <div class="conversion-hero" id="conversion-hero">
+    <!-- Rendered by JS -->
+    <p class="conversion-hero__caption">My River Cardoner &nbsp;·&nbsp; Shift from Perfectionism to Gratitude</p>
+  </div>
+
+  <!-- Intro quote -->
+  <div class="conversion-intro reveal">
+    <p class="conversion-intro__quote" id="conversion-intro-quote"></p>
+  </div>
+
+  <!-- Aesthetic Audio Player -->
+  <div class="container--narrow" style="margin-bottom: var(--space-lg);">
+    <div class="reveal" style="margin-bottom: 0.75rem;">
+      <span class="label">Listen to My Story</span>
+    </div>
+
+    <div class="audio-player reveal reveal--delay-1" id="cardoner-player">
+      <p class="audio-player__label">Oral Conversion Video</p>
+      <p class="audio-player__title">My River Cardoner: Shift from Perfectionism to Gratitude</p>
+
+      <div class="audio-player__controls">
+
+        <!-- Rewind 10s -->
+        <button class="audio-btn" id="cardoner-rwd" aria-label="Rewind 10 seconds">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v2c4.86-2.34 8-7.06 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-1.75v-5H9v-1.5h3.5v6.5zM7.88 8.5A6.49 6.49 0 0 1 11.5 7c1.27 0 2.46.36 3.46.98L13.5 9.45A4.48 4.48 0 0 0 11.5 9c-.87 0-1.68.25-2.37.67L7.88 8.5z"/>
+          </svg>
+        </button>
+
+        <!-- Play / Pause -->
+        <button class="audio-btn audio-btn--play" id="cardoner-play" aria-label="Play">
+          <svg id="cardoner-play-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="cardoner-pause-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+        </button>
+
+        <!-- Fast-forward 10s -->
+        <button class="audio-btn" id="cardoner-fwd" aria-label="Fast-forward 10 seconds">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 2c-4.69 0-8.5 3.81-8.5 8.5 0 4.44 3.14 9.16 8 11.5v-2h.5c4.69 0 8.5-3.81 8.5-8.5S17.19 2 12.5 2zm-.5 14.5h-1.75v-5H8.5V10H12v6.5zm5.62-8A6.47 6.47 0 0 0 12.5 7c-1.27 0-2.46.36-3.46.98l1.46 1.47A4.48 4.48 0 0 1 12.5 9c.87 0 1.68.25 2.37.67l1.25-1.17z"/>
+          </svg>
+        </button>
+
+        <!-- Scrubber -->
+        <div class="audio-player__scrub">
+          <span class="audio-player__time" id="cardoner-current">0:00</span>
+          <div class="audio-player__track" id="cardoner-track" role="slider" aria-label="Seek" tabindex="0">
+            <div class="audio-player__rail"></div>
+            <div class="audio-player__fill" id="cardoner-fill"></div>
+            <div class="audio-player__thumb" id="cardoner-thumb"></div>
+          </div>
+          <span class="audio-player__time audio-player__time--end" id="cardoner-duration">0:00</span>
+        </div>
+
+      </div><!-- /controls -->
+
+      <!-- Hidden HTML5 audio element -->
+      <audio id="cardoner-audio" preload="metadata">
+        <source src="/assets/audio/voiceover-cardoner.mp3" type="audio/mpeg" />
+      </audio>
+    </div><!-- /audio-player -->
+  </div>
+
+  <!-- Story sections -->
+  <div id="story-sections">
+    <!-- Rendered by JS -->
+  </div>
+
+  <!-- Prayer -->
+  <div class="prayer-block reveal" id="prayer-block">
+    <!-- Rendered by JS -->
+  </div>
+
+</div><!-- /page -->
+
+<script type="module">
+  import { content }       from './data/content.js';
+  import { renderNavbar }  from './scripts/components/navbar.js';
+  import { renderFooter }  from './scripts/components/footer.js';
+  import { initReveal }    from './scripts/utils/reveal.js';
+  import { renderImage }   from './scripts/utils/image.js';
+
+  renderNavbar('conversion.html');
+
+  // Hero image
+  const heroEl = document.getElementById('conversion-hero');
+  const heroImg = renderImage(content.story.heroImage);
+  heroImg.style.cssText = 'width:100%; height:100%; object-fit:cover; object-position: center 50%;';
+  heroEl.prepend(heroImg);
+
+  // Intro quote
+  document.getElementById('conversion-intro-quote').textContent = content.story.introQuote;
+
+  // Story sections
+  const sectionsEl = document.getElementById('story-sections');
+  content.story.sections.forEach((section, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'conversion-section reveal';
+    wrap.innerHTML = `
+      <div class="section-label" style="margin-bottom: 1.25rem;">
+        <span class="label">${i === 0 ? 'Part One' : i === 1 ? 'Part Two' : 'Part Three'}</span>
+      </div>
+      <h2 class="conversion-section__heading">${section.heading}</h2>
+      <div class="conversion-section__body">
+        ${section.paragraphs.map(p => `<p>${p}</p>`).join('')}
+      </div>
+    `;
+    sectionsEl.appendChild(wrap);
+
+    // Pause image between Part 1 and Part 2
+    if (i === 0) {
+      const pauseWrap = document.createElement('div');
+      pauseWrap.className = 'reveal';
+      pauseWrap.style.cssText = 'max-width: 380px; margin: var(--space-lg) auto;';
+      const pauseImg = renderImage(content.story.pauseImage);
+      pauseImg.style.cssText = 'width:100%; aspect-ratio: 1/1; object-fit: cover;';
+      pauseWrap.appendChild(pauseImg);
+      sectionsEl.appendChild(pauseWrap);
+    }
+  });
+
+  // Prayer
+  const prayerEl = document.getElementById('prayer-block');
+  prayerEl.innerHTML = `
+    <div class="section-label prayer-block__label" style="justify-content: center;">
+      <span class="label">${content.story.prayer.label}</span>
+    </div>
+    <div class="prayer-block__lines">
+      ${content.story.prayer.lines.map(l => `<p>${l}</p>`).join('')}
+    </div>
+  `;
+
+  renderFooter();
+  initReveal();
+</script>
+
+<script>
+  /* ── Audio Player Logic ──────────────────────────────── */
+  (function () {
+    const audio     = document.getElementById('cardoner-audio');
+    const playBtn   = document.getElementById('cardoner-play');
+    const playIcon  = document.getElementById('cardoner-play-icon');
+    const pauseIcon = document.getElementById('cardoner-pause-icon');
+    const rwdBtn    = document.getElementById('cardoner-rwd');
+    const fwdBtn    = document.getElementById('cardoner-fwd');
+    const track     = document.getElementById('cardoner-track');
+    const fill      = document.getElementById('cardoner-fill');
+    const thumb     = document.getElementById('cardoner-thumb');
+    const currentEl = document.getElementById('cardoner-current');
+    const durEl     = document.getElementById('cardoner-duration');
+
+    if (!audio) return;
+
+    function fmt(s) {
+      if (isNaN(s) || !isFinite(s)) return '0:00';
+      const m   = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${m}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    function updateProgress() {
+      if (!audio.duration) return;
+      const pct = (audio.currentTime / audio.duration) * 100;
+      fill.style.width = pct + '%';
+      thumb.style.left = pct + '%';
+      currentEl.textContent = fmt(audio.currentTime);
+    }
+
+    audio.addEventListener('loadedmetadata', () => {
+      durEl.textContent = fmt(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', updateProgress);
+
+    audio.addEventListener('ended', () => {
+      playIcon.style.display  = '';
+      pauseIcon.style.display = 'none';
+      playBtn.setAttribute('aria-label', 'Play');
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playIcon.style.display  = 'none';
+        pauseIcon.style.display = '';
+        playBtn.setAttribute('aria-label', 'Pause');
+      } else {
+        audio.pause();
+        playIcon.style.display  = '';
+        pauseIcon.style.display = 'none';
+        playBtn.setAttribute('aria-label', 'Play');
+      }
+    });
+
+    rwdBtn.addEventListener('click', () => {
+      audio.currentTime = Math.max(0, audio.currentTime - 10);
+    });
+
+    fwdBtn.addEventListener('click', () => {
+      audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10);
+    });
+
+    function seekTo(clientX) {
+      if (!audio.duration) return;
+      const rect = track.getBoundingClientRect();
+      const x    = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      audio.currentTime = (x / rect.width) * audio.duration;
+    }
+
+    let dragging = false;
+    track.addEventListener('mousedown',  (e) => { dragging = true; seekTo(e.clientX); });
+    document.addEventListener('mousemove',(e) => { if (dragging) seekTo(e.clientX); });
+    document.addEventListener('mouseup',  ()  => { dragging = false; });
+
+    track.addEventListener('touchstart', (e) => { dragging = true; seekTo(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('touchmove',(e) => { if (dragging) seekTo(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('touchend', ()  => { dragging = false; });
+
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  audio.currentTime = Math.max(0, audio.currentTime - 5);
+      if (e.key === 'ArrowRight') audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 5);
+    });
+  })();
+</script>
+
+</body>
+</html>
