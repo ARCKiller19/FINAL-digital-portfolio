@@ -102,8 +102,8 @@ export const content = {
           placeholder: null
         },
         modalImage: {
-          src:         '/assets/images/STILL_LIFE/still_journal_glasses.png',
-          alt:         'A journal and glasses resting on a table',
+          src:         '/assets/images/journal-1.png',
+          alt:         'My AdDU Pin',
           placeholder: null
         },
         body: [
