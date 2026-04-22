@@ -6,7 +6,7 @@
 export const content = {
 
   meta: {
-    name:    'Keana Roma',
+    name:    'Patricia Keana R. Roma',
     program: 'AB Psychology (Accelerated 3-Year Curriculum)',
     school:  'Ateneo de Davao University',
     tagline: 'A guided, reflective journey through formation, internship, and becoming.'
