@@ -144,7 +144,7 @@ export const content = {
           placeholder: null
         },
         modalImage: {
-          src:         '/assets/images/journal-3.png',
+          src:         '/assets/images/journal-3.PNG',
           alt:         'My Pixel Art',
           placeholder: null
         },
