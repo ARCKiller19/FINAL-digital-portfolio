@@ -404,6 +404,7 @@ export const content = {
     },
     retreatFruits: {
       label: 'Fruits from the Seniors\' Retreat',
+      image: { src: '/assets/images/retreat.png', alt: 'Seniors Retreat Memory' },
       body: [
         'The most significant grace I gained from the retreat is the understanding of the Discernment of Spirits. It is easy to get caught up in the intense pressure of graduating early, securing credentials, and wanting to prove my independence to my family. However, the retreat helped me realize that true fulfillment does not come from a place of ego or just proving others wrong.',
         'The deep, lasting peace comes from aligning my career in psychology with a genuine desire to serve others. My "cannonball moments" and the stress of my rigorous training are simply shaping me into a more resilient and empathetic professional.'

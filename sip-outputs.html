@@ -277,6 +277,14 @@
         flex: 0 0 calc(80% - 0.5rem);
       }
     }
+  /* --- RETREAT TWO-COLUMN LAYOUT --- */
+  .retreat-layout { display: flex; flex-direction: column; gap: 3rem; align-items: center; margin-top: 2rem; }
+    
+    @media (min-width: 768px) {
+      .retreat-layout { flex-direction: row; align-items: flex-start; }
+      .retreat-image { flex: 0 0 40%; } 
+      .retreat-text { flex: 1; }        
+    }
   </style>
 </head>
 <body>
@@ -377,8 +385,9 @@
     <div class="section-label reveal">
       <span class="label" id="retreat-label"></span>
     </div>
-    <div id="retreat-body" class="reveal reveal--delay-1">
-      <!-- Rendered by JS -->
+    <div class="retreat-layout reveal reveal--delay-1">
+      <div class="retreat-image" id="retreat-image-container"></div>
+      <div class="retreat-text" id="retreat-body"></div>
     </div>
   </section>
 
@@ -473,6 +482,12 @@
   collageEl.appendChild(collageImg);
 
   // ── Retreat ───────────────────────────────────────────────
+  const retreatImgEl = document.getElementById('retreat-image-container');
+  if (retreatFruits.image) {
+    const rImg = renderImage(retreatFruits.image);
+    rImg.style.cssText = 'width:100%; border-radius: 8px; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.05);';
+    retreatImgEl.appendChild(rImg);
+  }
   document.getElementById('retreat-label').textContent = retreatFruits.label;
   const retreatBodyEl = document.getElementById('retreat-body');
   retreatFruits.body.forEach((p) => {
