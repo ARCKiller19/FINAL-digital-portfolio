@@ -32,7 +32,7 @@ export const content = {
     stages: [
       {
         id:      'seed',
-        year:    '2021',
+        year:    '2024',
         title:   'The Seed',
         theme:   'Isolation',
         period:  'Academic Survival, Finding Solitude',
@@ -45,7 +45,7 @@ export const content = {
       },
       {
         id:      'sprout',
-        year:    '2023',
+        year:    '2025',
         title:   'The Sprout',
         theme:   'Connection',
         period:  'Finding Safety in Connection, Mentorship',
