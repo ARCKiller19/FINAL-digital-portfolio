@@ -41,7 +41,8 @@ export const content = {
           'Enrolled in accelerated 3-year AB Psychology program',
           'Navigated early academic pressure and identity questions',
           'Discovered solitude as a space for self-understanding'
-        ]
+        ],
+        image: { src: '/assets/images/journey-seed.jpg', alt: 'The Seed Phase' }
       },
       {
         id:      'sprout',
@@ -55,7 +56,8 @@ export const content = {
           'Engaged deeply with Ignatian formation and retreat practices',
           'Found mentorship and community in the psychology program',
           'Presented at the Salik-Sikolohiya conference'
-        ]
+        ],
+        image: { src: '/assets/images/journey-sprout.jpg', alt: 'The Sprout Phase' }
       },
       {
         id:      'bloom',
@@ -69,7 +71,8 @@ export const content = {
           'Completed 40-hour RBT (Registered Behavior Technician) training',
           'Internship experiences: clinical, educational, community, I/O',
           'Preparing for IELTS and Master\'s degree pursuit in Australia'
-        ]
+        ],
+        image: { src: '/assets/images/journey-bloom.jpg', alt: 'The Bloom Phase' }
       }
     ]
   },
@@ -77,6 +80,7 @@ export const content = {
   // ─── JOURNAL ────────────────────────────────────────────────
   journal: {
     intro: 'Six entries drawn from the interior life of an internship. Each one a small room entered, examined, and left transformed.',
+    heroImage: { src: '/assets/images/journal-hero.jpg', alt: 'Journal Hero Image' },
     collageImages: [
       {
         src:         '/assets/images/LIFESTYLE/collage_quiet_radius.png',
@@ -257,16 +261,7 @@ export const content = {
           'This realization humbled me, much like that cannonball humbled Ignatius. I no longer want to serve out of a nervous desire to fulfill my basic internship duties or build my ego. I want to respond to this unearned grace by serving purely out of gratitude. I am choosing to eagerly embrace the beautiful chaotic noise of my patients finding their voices as my own Cardoner moment of seeing all things new.'
         ]
       }
-    ],
-    prayer: {
-      label: 'A Prayer for My Future Self',
-      lines: [
-        'Lord, grant me the focus and peace I need to conquer my immediate hurdles like my IELTS exam.',
-        'Guide my steps as I finish this accelerated journey, helping me prove my independence and strength.',
-        'May I never lose sight of Cura Personalis, using my clinical skills to truly serve those in need.',
-        'Let my future career be a testament to Your grace, finding lasting joy in the work I do for others.'
-      ]
-    }
+    ]
   },
 
   // ─── PASSION PLAN ───────────────────────────────────────────
@@ -305,6 +300,16 @@ export const content = {
     ],
     missionStatement: 'My mission is to use my foundation in psychology and Applied Behavior Analysis to empower individuals, particularly those with special needs, to achieve greater independence and quality of life. I strive to continuously expand my expertise by pursuing my Master\'s degree abroad, allowing me to bring world-class psychological practices wherever I go. Ultimately, I aim to build a successful, independent career that proves my capabilities, fulfills my drive for excellence, and serves others for the greater glory of God.',
     vision: 'I envision myself as a fully independent and highly capable clinical psychologist or ABA specialist, having successfully completed my Master\'s degree in Australia. I am positioned in a community where my specialized training directly impacts children and families navigating developmental challenges. I am someone who has proven that I can stand on my own two feet, thriving in a fast-paced environment far from my comfort zone, while remaining empathetic and deeply rooted in the Ignatian values I learned at AdDU.',
+
+    prayer: {
+      label: 'A Prayer for My Future Self',
+      lines: [
+        'Lord, grant me the focus and peace I need to conquer my immediate hurdles like my IELTS exam.',
+        'Guide my steps as I finish this accelerated journey, helping me prove my independence and strength.',
+        'May I never lose sight of Cura Personalis, using my clinical skills to truly serve those in need.',
+        'Let my future career be a testament to Your grace, finding lasting joy in the work I do for others.'
+      ]
+    },
 
     arrupeJourney: {
       label: 'My Arrupe Journey',
@@ -361,6 +366,8 @@ export const content = {
 
   // ─── COMMUNITY / SIP OUTPUTS ────────────────────────────────
   community: {
+
+    heroImage: { src: '/assets/images/synthesis-hero.jpg', alt: 'Synthesis Hero Image' },
 
     sipActivity1: {
       label: '1st SIP Activity: What is Beyond Myself',

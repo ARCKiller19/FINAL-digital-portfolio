@@ -221,7 +221,9 @@
   </section>
 
   <!-- Mission Statement -->
-  <section class="section" id="mission-section">
+  <section class="section" id="mission-section" style="padding-top: 2rem;">
+    <hr style="border: none; border-top: 1px solid var(--color-border); max-width: 800px; margin: 0 auto 4rem auto;">
+    
     <div class="mission-block reveal">
       <div class="section-label" style="justify-content: center; margin-bottom: 1.5rem;">
         <span class="label">Personal Mission Statement</span>
@@ -240,6 +242,34 @@
       </div>
       <p class="mission-block__quote" id="vision-statement"></p>
     </div>
+  </section>
+
+  <!-- ── Prayer for My Future Self ── -->
+  <section class="section" id="prayer-section" style="padding-top: 4rem;">
+    
+    <div class="reveal" style="
+      max-width: 320px; 
+      margin: 0 auto 3rem auto; 
+      border-radius: 8px; 
+      overflow: hidden; 
+    ">
+      <img src="/assets/images/prayer-image.jpg" alt="A quiet moment of reflection" style="
+        width: 100%; 
+        height: auto; 
+        display: block; 
+        object-fit: cover; 
+        aspect-ratio: 4/5;
+      ">
+    </div>
+
+    <div class="prayer-block reveal" id="prayer-block" style="
+      max-width: 560px;
+      margin-inline: auto;
+      padding-inline: clamp(1.5rem, 5vw, 3rem);
+      text-align: center;
+      border: none !important;
+    ">
+      </div>
   </section>
 
   <!-- ── Task 2: My Arrupe Journey Carousel ── -->
@@ -321,6 +351,27 @@
   const groundImg = renderImage(content.vision.groundingImage);
   groundImg.style.cssText = 'width:100%; aspect-ratio: 4/3; object-fit: cover;';
   groundEl.appendChild(groundImg);
+
+  // ── Prayer for My Future Self ────────────────────────────
+  const prayerEl = document.getElementById('prayer-block');
+  if (content.vision.prayer) {
+    prayerEl.innerHTML = `
+      <div class="section-label" style="justify-content:center; margin-bottom:1.75rem;">
+        <span class="label">${content.vision.prayer.label}</span>
+      </div>
+      <div style="
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        font-weight: 300;
+        font-style: italic;
+        line-height: 2.15;
+        color: var(--color-text-muted);
+        padding-block: var(--space-md);
+      ">
+        ${content.vision.prayer.lines.map(l => `<p>${l}</p>`).join('')}
+      </div>
+    `;
+  }
 
   // ── Task 2: Arrupe Journey Carousel ─────────────────────
   const { arrupeJourney, arrupeInsights } = content.vision;

@@ -218,11 +218,6 @@
     <!-- Rendered by JS -->
   </div>
 
-  <!-- Prayer -->
-  <div class="prayer-block reveal" id="prayer-block">
-    <!-- Rendered by JS -->
-  </div>
-
 </div><!-- /page -->
 
 <script type="module">
@@ -270,17 +265,6 @@
       sectionsEl.appendChild(pauseWrap);
     }
   });
-
-  // Prayer
-  const prayerEl = document.getElementById('prayer-block');
-  prayerEl.innerHTML = `
-    <div class="section-label prayer-block__label" style="justify-content: center;">
-      <span class="label">${content.story.prayer.label}</span>
-    </div>
-    <div class="prayer-block__lines">
-      ${content.story.prayer.lines.map(l => `<p>${l}</p>`).join('')}
-    </div>
-  `;
 
   renderFooter();
   initReveal();
