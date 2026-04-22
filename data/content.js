@@ -1,6 +1,6 @@
 // =============================================================
 //  content.js — Single Source of Truth
-//  The Growth of a Quiet Soul | Keana Roma | AdDU SIP Portfolio
+//  The Growth of a Quiet Soul | Patricia Keana R. Roma | AdDU SIP Portfolio
 // =============================================================
 
 export const content = {
