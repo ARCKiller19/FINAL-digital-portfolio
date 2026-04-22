@@ -304,11 +304,82 @@ export const content = {
       }
     ],
     missionStatement: 'My mission is to use my foundation in psychology and Applied Behavior Analysis to empower individuals, particularly those with special needs, to achieve greater independence and quality of life. I strive to continuously expand my expertise by pursuing my Master\'s degree abroad, allowing me to bring world-class psychological practices wherever I go. Ultimately, I aim to build a successful, independent career that proves my capabilities, fulfills my drive for excellence, and serves others for the greater glory of God.',
-    vision: 'I envision myself as a fully independent and highly capable clinical psychologist or ABA specialist, having successfully completed my Master\'s degree in Australia. I am positioned in a community where my specialized training directly impacts children and families navigating developmental challenges. I am someone who has proven that I can stand on my own two feet, thriving in a fast-paced environment far from my comfort zone, while remaining empathetic and deeply rooted in the Ignatian values I learned at AdDU.'
+    vision: 'I envision myself as a fully independent and highly capable clinical psychologist or ABA specialist, having successfully completed my Master\'s degree in Australia. I am positioned in a community where my specialized training directly impacts children and families navigating developmental challenges. I am someone who has proven that I can stand on my own two feet, thriving in a fast-paced environment far from my comfort zone, while remaining empathetic and deeply rooted in the Ignatian values I learned at AdDU.',
+
+    arrupeJourney: {
+      label: 'My Arrupe Journey',
+      slides: [
+        { src: '/assets/images/arrupe/slide-1.png',  alt: 'Arrupe Journey Slide 1'  },
+        { src: '/assets/images/arrupe/slide-2.png',  alt: 'Arrupe Journey Slide 2'  },
+        { src: '/assets/images/arrupe/slide-3.png',  alt: 'Arrupe Journey Slide 3'  },
+        { src: '/assets/images/arrupe/slide-4.png',  alt: 'Arrupe Journey Slide 4'  },
+        { src: '/assets/images/arrupe/slide-5.png',  alt: 'Arrupe Journey Slide 5'  },
+        { src: '/assets/images/arrupe/slide-6.png',  alt: 'Arrupe Journey Slide 6'  },
+        { src: '/assets/images/arrupe/slide-7.png',  alt: 'Arrupe Journey Slide 7'  },
+        { src: '/assets/images/arrupe/slide-8.png',  alt: 'Arrupe Journey Slide 8'  },
+        { src: '/assets/images/arrupe/slide-9.png',  alt: 'Arrupe Journey Slide 9'  },
+        { src: '/assets/images/arrupe/slide-10.png', alt: 'Arrupe Journey Slide 10' },
+        { src: '/assets/images/arrupe/slide-11.png', alt: 'Arrupe Journey Slide 11' },
+        { src: '/assets/images/arrupe/slide-12.png', alt: 'Arrupe Journey Slide 12' },
+        { src: '/assets/images/arrupe/slide-13.png', alt: 'Arrupe Journey Slide 13' },
+        { src: '/assets/images/arrupe/slide-14.png', alt: 'Arrupe Journey Slide 14' },
+        { src: '/assets/images/arrupe/slide-15.png', alt: 'Arrupe Journey Slide 15' },
+        { src: '/assets/images/arrupe/slide-16.png', alt: 'Arrupe Journey Slide 16' },
+      ]
+    },
+
+    arrupeInsights: {
+      label: 'Arrupe Insights',
+      cards: [
+        {
+          label:  '3 Discoveries',
+          title:  'What I Found',
+          points: [
+            'Excellence is Holistic — balancing academic rigors with art and creative practice.',
+            'Psychology is Service — a vocational calling, especially through ABA.',
+            'The Power of Selective Connection — quality of relationship always trumps quantity.'
+          ]
+        },
+        {
+          label:  '2 Suggestions',
+          title:  'What I Offer Back',
+          points: [
+            'Vocational Integration — stronger institutional support for RBT certifications.',
+            'Wellness for Accelerated Students — dedicated structures for students in compressed timelines.'
+          ]
+        },
+        {
+          label:  '1 Ignatian Value',
+          title:  'Persons for and with Others',
+          points: [
+            'Using quiet listening skills and deep empathy as the foundation for serving future clients with care and presence.'
+          ]
+        }
+      ]
+    }
   },
 
   // ─── COMMUNITY / SIP OUTPUTS ────────────────────────────────
   community: {
+
+    sipActivity1: {
+      label: '1st SIP Activity: What is Beyond Myself',
+      prompts: [
+        {
+          question: 'What theme did you learn the most from?',
+          answer:   'Persons for and with Others. The activity surfaced how deeply I had been operating in self-preservation and survival mode throughout the accelerated program. Moving toward genuine vulnerability, and choosing to be present for others even while still finding my footing, became the most quietly transformative shift of this formation.'
+        },
+        {
+          question: 'Was there an instance where you experienced transformation?',
+          answer:   'Preparing for my RBT training was that moment. I had spent so much energy trying to be invisible, to observe without being noticed, to fulfill requirements without fully inhabiting the role. The training made it clear that invisibility had to end. To be an effective practitioner meant becoming an active presence, a deep listener, someone whose attention could be felt by the people in the room.'
+        },
+        {
+          question: 'What are you most thankful for?',
+          answer:   'My small circle: a career friend and my partner. The Arrupe journey taught me that the depth of a support system matters far more than its size. I am most thankful for those two relationships and the way they have shaped my capacity to carry that same quality of presence into my OJT and, eventually, into my practice as a healer.'
+        }
+      ]
+    },
+
     collageImage: {
       src:         '/assets/images/LIFESTYLE/collage_threshold.png',
       alt:         'Collage: community, learning, reflection',
@@ -336,6 +407,18 @@ export const content = {
       body: [
         'The most significant grace I gained from the retreat is the understanding of the Discernment of Spirits. It is easy to get caught up in the intense pressure of graduating early, securing credentials, and wanting to prove my independence to my family. However, the retreat helped me realize that true fulfillment does not come from a place of ego or just proving others wrong.',
         'The deep, lasting peace comes from aligning my career in psychology with a genuine desire to serve others. My "cannonball moments" and the stress of my rigorous training are simply shaping me into a more resilient and empathetic professional.'
+      ]
+    },
+
+    groupPresentation: {
+      label: 'Solidarity in Mission — Group Presentation',
+      slides: [
+        { src: '/assets/images/group/group-1.png',  alt: 'Group Presentation Slide 1'  },
+        { src: '/assets/images/group/group-2.png',  alt: 'Group Presentation Slide 2'  },
+        { src: '/assets/images/group/group-3.png',  alt: 'Group Presentation Slide 3'  },
+        { src: '/assets/images/group/group-4.png',  alt: 'Group Presentation Slide 4'  },
+        { src: '/assets/images/group/group-5.png',  alt: 'Group Presentation Slide 5'  },
+        { src: '/assets/images/group/group-6.png',  alt: 'Group Presentation Slide 6'  },
       ]
     }
   }
