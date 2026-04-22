@@ -123,8 +123,8 @@ export const content = {
           placeholder: null
         },
         modalImage: {
-          src:         '/assets/images/STILL_LIFE/still_stones_bowl.png',
-          alt:         'Three smooth stones resting in a ceramic bowl',
+          src:         '/assets/images/journal-2.png',
+          alt:         'Organizing Envelopes',
           placeholder: null
         },
         body: [
@@ -144,8 +144,8 @@ export const content = {
           placeholder: null
         },
         modalImage: {
-          src:         '/assets/images/STILL_LIFE/still_sketchbook_ship.png',
-          alt:         'A sketchbook open to a ship drawing — imagination and navigation',
+          src:         '/assets/images/journal-3.png',
+          alt:         'My Pixel Art',
           placeholder: null
         },
         body: [
@@ -165,8 +165,8 @@ export const content = {
           placeholder: null
         },
         modalImage: {
-          src:         '/assets/images/EDITORIAL/ordinary_light_cup.png',
-          alt:         'A cup of tea in morning light',
+          src:         '/assets/images/journal-4.png',
+          alt:         'My Favorite Person',
           placeholder: null
         },
         body: [
@@ -186,8 +186,8 @@ export const content = {
           placeholder: null
         },
         modalImage: {
-          src:         '/assets/images/STILL_LIFE/still_journal_glasses.png',
-          alt:         'A journal open on a table',
+          src:         '/assets/images/journal-5.png',
+          alt:         'Australia Career Goal',
           placeholder: null
         },
         body: [
@@ -207,8 +207,8 @@ export const content = {
           placeholder: null
         },
         modalImage: {
-          src:         '/assets/images/STILL_LIFE/still_stones_bowl.png',
-          alt:         'Stones in a bowl — simple, grounded objects',
+          src:         '/assets/images/journal-6.png',
+          alt:         'Writing on Notebook',
           placeholder: null
         },
         body: [
