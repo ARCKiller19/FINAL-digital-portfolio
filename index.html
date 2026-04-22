@@ -25,8 +25,10 @@
     </div>
   </section>
 
-  <!-- Pause image (hidden — replaced by per-stage images) -->
-  <div class="nature-pause" id="pause-image-1" style="display:none;"></div>
+  <!-- Pause image -->
+  <div class="nature-pause reveal" id="pause-image-1">
+    <!-- Rendered by JS -->
+  </div>
 
   <!-- Journey Map -->
   <section class="section container" id="journey-map">
@@ -37,10 +39,17 @@
       Three stages. One unfolding soul.
     </h2>
 
-    <div class="timeline" id="timeline">
-      <div class="timeline__spine"></div>
-      <div class="timeline__stages" id="timeline-stages">
+    <div class="direction-block reveal reveal--delay-1" id="direction-block">
+      <div class="direction-block__image" id="direction-image">
         <!-- Rendered by JS -->
+      </div>
+      <div class="direction-block__text">
+        <div class="timeline" id="timeline">
+          <div class="timeline__spine"></div>
+          <div class="timeline__stages" id="timeline-stages">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -72,22 +81,20 @@
   const heroCol = document.querySelector('.hero__image-col');
   heroCol.appendChild(renderImage(content.journey.heroImage));
 
+  // Pause image
+  const pauseEl = document.getElementById('pause-image-1');
+  pauseEl.appendChild(renderImage(content.journey.pauseImage));
+
+  // Direction image
+  const dirImg = document.getElementById('direction-image');
+  dirImg.appendChild(renderImage(content.journey.directionImage));
+
   // Timeline stages
   const stagesContainer = document.getElementById('timeline-stages');
   content.journey.stages.forEach((stage, i) => {
     const el = document.createElement('div');
     el.className = `timeline__stage reveal reveal--delay-${i + 1}`;
     el.id = `stage-${stage.id}`;
-
-    const stageImageHTML = stage.image
-      ? `<img
-           src="${stage.image.src}"
-           alt="${stage.image.alt}"
-           loading="lazy"
-           style="width:100%; border-radius:8px; box-shadow:0 4px 20px rgba(42,39,34,0.10); margin-top:1.25rem; display:block;"
-         />`
-      : '';
-
     el.innerHTML = `
       <div class="timeline__dot"></div>
       <p class="timeline__year">${stage.year} &nbsp;·&nbsp; ${stage.period}</p>
@@ -97,7 +104,6 @@
       <div class="timeline__milestones">
         ${stage.milestones.map(m => `<span class="timeline__milestone">${m}</span>`).join('')}
       </div>
-      ${stageImageHTML}
     `;
     stagesContainer.appendChild(el);
   });

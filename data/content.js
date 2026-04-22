@@ -42,7 +42,7 @@ export const content = {
           'Navigated early academic pressure and identity questions',
           'Discovered solitude as a space for self-understanding'
         ],
-        image: { src: '/assets/images/journey-seed.jpg', alt: 'The Seed Phase' }
+        image: { src: '/assets/images/journey-seed.PNG', alt: 'The Seed Phase' }
       },
       {
         id:      'sprout',
@@ -57,7 +57,7 @@ export const content = {
           'Found mentorship and community in the psychology program',
           'Presented at the Salik-Sikolohiya conference'
         ],
-        image: { src: '/assets/images/journey-sprout.jpg', alt: 'The Sprout Phase' }
+        image: { src: '/assets/images/journey-sprout.png', alt: 'The Sprout Phase' }
       },
       {
         id:      'bloom',
@@ -72,7 +72,7 @@ export const content = {
           'Internship experiences: clinical, educational, community, I/O',
           'Preparing for IELTS and Master\'s degree pursuit in Australia'
         ],
-        image: { src: '/assets/images/journey-bloom.jpg', alt: 'The Bloom Phase' }
+        image: { src: '/assets/images/journey-bloom.png', alt: 'The Bloom Phase' }
       }
     ]
   },
@@ -80,7 +80,7 @@ export const content = {
   // ─── JOURNAL ────────────────────────────────────────────────
   journal: {
     intro: 'Six entries drawn from the interior life of an internship. Each one a small room entered, examined, and left transformed.',
-    heroImage: { src: '/assets/images/journal-hero.jpg', alt: 'Journal Hero Image' },
+    heroImage: { src: '/assets/images/journal-hero.png', alt: 'Journal Hero Image' },
     collageImages: [
       {
         src:         '/assets/images/LIFESTYLE/collage_quiet_radius.png',
@@ -367,7 +367,7 @@ export const content = {
   // ─── COMMUNITY / SIP OUTPUTS ────────────────────────────────
   community: {
 
-    heroImage: { src: '/assets/images/synthesis-hero.jpg', alt: 'Synthesis Hero Image' },
+    heroImage: { src: '/assets/images/synthesis-hero.png', alt: 'Synthesis Hero Image' },
 
     sipActivity1: {
       label: '1st SIP Activity: What is Beyond Myself',
