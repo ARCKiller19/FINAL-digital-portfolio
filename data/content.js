@@ -397,7 +397,7 @@ export const content = {
       prompts: [
         {
           question: 'What struck you in the movie?',
-          answer:   'The scene that really sticks out is right after Joe finishes his dream gig. He expects his entire life to feel magically transformed, but he just feels normal. The saxophonist Dorothea tells him a story about a young fish frantically looking for the "ocean." The older fish looks at him and says, "You\'re in water right now." It is a striking image that shows how easily we miss the life happening right in front of us.'
+          answer:   'The scene that really sticks out is right after Joe finishes his dream gig. He expects his entire life to feel magically transformed, but he just feels normal. The saxophonist Dorothea tells him a story about a young fish frantically looking for the "ocean." The older fish looks at him and says, "That\'s what you\'re in right now." It is a striking image that shows how easily we miss the life happening right in front of us.'
         },
         {
           question: 'How do you feel about it? What are your insights about your own soul?',
